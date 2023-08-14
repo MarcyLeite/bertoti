@@ -13,7 +13,9 @@ Within Google, we sometimes say, “Software engineering is programming integrat
 ### Comentario
 O texto 2 diferencia engenharia de software de programação. Mesmo programação sendo uma das bases que fazem parte da engenharia de software, somente ela não leva em consideração o escopo do projeto. A engenharia de software leva em consideração o tamanho do projeto, sua capacidade de crescer e o tempo de desenvolvimento (como dito no texto 1), em um escopo maior, bem diferente do programador apenas preocupado com o desenvolvimento em si.
 
-### Exemplos
+
+
+### Exemplos // Alterar os exemplos
 1. R é uma linguagem de programação feita para trabalhos academicos, sendo mais acessivel com menos usos;
 2. Godot é uma engine de desenvolvimento de jogo open source, sendo mais acessivel sendo menos completo;
 3. VSCode é um editor de texto, que troca a acessibilidade de IDEs por escabilidade, com sua funcionalidade e biblioteca de plugins.
