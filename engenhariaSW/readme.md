@@ -49,3 +49,8 @@ Um feedback visual explicando ou auxiliando o usuario que ele fez algo errado, u
 
 ### 10. Ajuda e documentação
 Importante caso o usuario tenha mais dificuldade de utilizar o sistema, a documentação de utilização pode resolver algumas duvidas.
+
+# Rodar Termap
+Para rodar termap, utilizar maven e usar
+`mvn package`;
+`java -cp target/termap-1.0.SNAPSHOT.jar com.termap.Main`.
