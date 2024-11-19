@@ -13,6 +13,8 @@ const router = createRouter({
   routes,
 })
 
+console.log(routes)
+
 // Workaround for https://github.com/vitejs/vite/issues/11804
 router.onError((err, to) => {
   if (err?.message?.includes?.('Failed to fetch dynamically imported module')) {

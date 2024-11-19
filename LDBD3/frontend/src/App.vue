@@ -1,8 +1,11 @@
 <template>
   <v-app>
-    <v-main>
-      <router-view />
-    </v-main>
+    <PageHeader />
+    <div class="d-flex justify-center h-100">
+      <v-main max-width="1280">
+        <router-view />
+      </v-main>
+    </div>
   </v-app>
 </template>
 
