@@ -1,5 +1,8 @@
 <template>
-  <div class="w-75 ma-auto mt-16 d-flex flex-column ga-4">
+  <div
+    class="ma-auto my-16 d-flex flex-column ga-4"
+    max-width="980"
+  >
     <span class="text-h5">Users</span>
     <v-card
       v-for="(user, i) in userList"
@@ -22,36 +25,45 @@
         <v-card-actions>
           <v-btn
             variant="outlined"
-            :onclick="() => router.push('/users/1')"
+            :onclick="() => router.push(`/users/${user.id}`)"
           >
             Profile
           </v-btn>
         </v-card-actions>
       </div>
     </v-card>
+    <v-pagination
+      :length="totalPages"
+      @update:model-value="fetchUsers"
+    />
   </div>
 </template>
   
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
+import axios from 'axios';
+import { ref, onMounted } from 'vue';
 
-type User = {
-    name: string,
-    email: string,
+export type User = {
+  id: number
+  name: string
+  email: string
 }
 
-const userList: User[] = [
-    {
-        name: 'Mario',
-        email: 'mario.mario@nintendo.com'
-    },
-    {
-        name: 'Luigi',
-        email: 'luigi.mario@nintendo.com'
-    }
-]
-
 const router = useRouter()
+
+const userList = ref<User[]>([])
+const totalPages = ref(0)
+
+const fetchUsers = async (page: number) => {
+  const pageInfo = (await axios.get(`http://localhost:8080/v1/api/user/list/${page - 1}`)).data
+  userList.value = pageInfo.content
+  totalPages.value = pageInfo.totalPages
+}
+
+onMounted(() => {
+  fetchUsers(1)
+})
 
 </script>

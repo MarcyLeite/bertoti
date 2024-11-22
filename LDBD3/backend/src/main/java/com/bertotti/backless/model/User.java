@@ -1,36 +1,40 @@
 package com.bertotti.backless.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "backless_user")
 public class User extends Base {
     @Getter
     @Setter
-    @NotNull(message = "email is required")
+    @Column(unique = true, nullable = false)
     private String email;
 
     @Getter
     @Setter
-    @NotNull(message = "name is required")
+    @Column(nullable = false)
     private String name;
 
     @Getter
     @Setter
-    @NotNull(message = "password is required")
-    @Size(min = 8, message = "password must be at least 8 characters")
     @JsonProperty(access = Access.WRITE_ONLY)
+    @Column(nullable = false)
     private String password;
+
+    @Getter
+    @Setter
+    @JsonProperty(access = Access.WRITE_ONLY)
+    @Column(nullable = false)
+    @OneToMany(mappedBy = "user")
+    private List<Article> articles;
 }

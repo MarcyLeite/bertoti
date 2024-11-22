@@ -12,17 +12,29 @@
         </v-btn>
         
         <v-btn
+          :active="route.path === '/users'"
           :onclick="() => router.push('/users')"
         >
           Users
         </v-btn>
-        <v-divider vertical />
+        <v-divider
+          vertical
+          thickness="4"
+        />
         <v-btn
+          v-if="!isLogged"
           variant="flat"
           color="primary"
           :onclick="() => router.push('/login')"
         >
           login
+        </v-btn><v-btn
+          v-else
+          variant="flat"
+          color="primary"
+          :onclick="logout"
+        >
+          Logout
         </v-btn>
       </div>
     </template>
@@ -31,7 +43,13 @@
 
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router';
+import { isLogged } from '@/store';
 
 const route = useRoute()
 const router = useRouter()
+
+const logout = () => {
+  localStorage.setItem('access-token', '')
+  router.push('/')
+}
 </script>
